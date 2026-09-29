@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Secrets — never commit real credentials (.env.example files are committed)
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+.next/
+out/
+*.tsbuildinfo
+
+# Local dev database (portable Postgres) and locally stored uploads
+.devdb/
+backend/uploads/
+
+# Misc
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,13 @@
+# Local PostgreSQL for development: `docker compose up -d`
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: skymap
+      POSTGRES_PASSWORD: skymap
+      POSTGRES_DB: skymap
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+volumes:
+  pgdata:
