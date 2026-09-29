@@ -30,6 +30,18 @@ A marketplace for electronics, industrial equipment, electrical components, safe
 
 The Prisma schema already covers the later modules (orders, payments, coupons, sellers, payouts, banners and more), so they won't need schema rewrites.
 
+## Live deployment
+
+GitHub hosts the code only. The running site uses three free services, all deploying from this repo:
+
+| Piece | Host | Config |
+|---|---|---|
+| Website | Vercel (root directory `frontend`) | [frontend/vercel.json](frontend/vercel.json) |
+| API | Render (Docker, free plan) | [render.yaml](render.yaml) |
+| Database | Neon PostgreSQL (free) | `DATABASE_URL` + `DIRECT_URL` |
+
+Step-by-step instructions, including seeding and the settings that link the three together, are in **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**. Every push to `main` redeploys both apps; GitHub Actions type-checks and builds them first.
+
 ## Languages
 
 The header has a language switcher covering English, हिन्दी, தமிழ், తెలుగు, ಕನ್ನಡ, मराठी and বাংলা. The choice is remembered in the browser and, for signed-in users, saved to their profile so it follows them to other devices.

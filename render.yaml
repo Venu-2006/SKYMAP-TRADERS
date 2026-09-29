@@ -1,0 +1,70 @@
+# Render Blueprint for the SKYMAP TRADERS API.
+# In Render: New → Blueprint → pick this repo. Render reads this file and
+# creates the service; you then fill in the values marked sync: false.
+#
+# The database lives on Neon (free), not here — paste its connection strings
+# into DATABASE_URL (pooled) and DIRECT_URL (unpooled).
+services:
+  - type: web
+    name: skymap-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: singapore # closest region to India; change if you prefer
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Render sets PORT itself; the app reads it.
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      # Your Vercel URL(s), comma-separated, no trailing slash.
+      - key: CORS_ORIGINS
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      # This service's own URL, e.g. https://skymap-api.onrender.com
+      - key: API_PUBLIC_URL
+        sync: false
+      # Optional services — leave blank until you have the keys.
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: '587'
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        value: SKYMAP TRADERS <no-reply@skymaptraders.com>
+      # Printed on GST invoices.
+      - key: COMPANY_NAME
+        value: SKYMAP TRADERS
+      - key: COMPANY_GSTIN
+        sync: false
+      - key: COMPANY_ADDRESS
+        value: India
+      - key: COMPANY_STATE
+        value: Tamil Nadu
+      - key: COMPANY_PHONE
+        value: '+91 7010942325'
